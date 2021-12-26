@@ -8,6 +8,9 @@ services:
     environment:
       - POSTGRES_PASSWORD
       - PGDATA=/var/lib/postgresql/data/pgdata
+    networks:
+      - default
+      - postgres
     volumes:
       - ./data/postgres:/var/lib/postgresql/data:rw
 
@@ -22,3 +25,7 @@ services:
     volumes:
       - ./servers.json:/pgadmin4/servers.json:ro
       - ./data/pgadmin:/var/lib/pgadmin:rw
+
+networks:
+  postgres:
+    name: postgres
